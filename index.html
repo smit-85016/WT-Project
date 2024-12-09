@@ -1,149 +1,84 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Official Login & Sign Up</title>
-    <style>
-        /* styles.css */
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #f0f0f0;
+      margin: 0;
+    }
 
-body {
-    font-family: 'Arial', sans-serif;
-    background: #f0f0f0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
-}
+    .container {
+      background: #fff;
+      padding: 20px;
+      padding-right: 40px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      width: 300px;
+    }
 
-.container {
-    background: #fff;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    width: 400px;
-    overflow: hidden;
-}
+    input {
+      width: 100%;
+      margin: 10px 0;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
 
-.form-wrapper {
-    text-align: center;
-}
+    button {
+      width: 100%;
+      padding: 10px;
+      background-color: #343638;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
 
-.form-header {
-    display: flex;
-    justify-content: space-around;
-    border-bottom: 2px solid #f0f0f0;
-    background-color: #f8f8f8;
-}
+    button:hover {
+      background-color: #0e82ff;
+    }
 
-.form-header .button {
-    flex: 1;
-    padding: 15px 0;
-    border: none;
-    background: none;
-    font-size: 16px;
-    font-weight: bold;
-    cursor: pointer;
-    color: #333;
-    transition: color 0.3s ease;
-}
-
-.form-header .button.active {
-    color: #007bff;
-    border-bottom: 2px solid #007bff;
-}
-
-.form-header .button:hover {
-    color: #0056b3;
-}
-
-.form-content {
-    display: none;
-    padding: 30px 20px;
-}
-
-.form-content.active {
-    display: block;
-}
-
-form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-form h2 {
-    margin-bottom: 20px;
-    font-size: 22px;
-    color: #333;
-}
-
-form input {
-    width: 100%;
-    padding: 10px;
-    margin: 10px 0;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    font-size: 14px;
-}
-
-form .button {
-    padding: 10px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-    width: 100%;
-}
-
-form .button:hover {
-    background-color: #0056b3;
-}
-    </style>
+    p {
+      color: green;
+    }
+  </style>
 </head>
+
 <body>
-    <div class="container">
-        <div class="form-wrapper">
-            <div class="form-header">
-                <button id="login-btn" class="active" onclick="showLogin()">Login</button>
-                <button id="signup-btn" onclick="showSignUp()">Sign Up</button>
-            </div>
-            <div id="login-form" class="form-content active">
-                <form action="homepage.html" method="POST">
-                    <h2>Welcome Back!</h2>
-                    <input type="email" placeholder="Email" required />
-                    <input type="password" placeholder="Password" required />
-                   <a href="homepage.html" class="button"</a> 
-                </form>
-            </div>
-            <div id="signup-form" class="form-content">
-                <form action="homepage.html" method="POST">
-                    <h2>Create an Account</h2>
-                    <input type="text" placeholder="Full Name" required />
-                    <input type="email" placeholder="Email" required />
-                    <input type="password" placeholder="Password" required />
-                    <button class="button">Sign Up</button>
-                </form>
-            </div>
-        </div>
-    </div>
-    <script>
+  <div class="container">
+    <h1>Sign Up</h1>
+    <form id="signupForm" action="homepage.html">
+      <input type="text" id="username" placeholder="Username" required>
+      <input type="email" id="email" placeholder="Email" required>
+      <input type="password" id="password" placeholder="Password" required>
+      <button type="submit">Sign-Up Up</button>
+    </form>
+    <p id="message"></p>
+  </div>
+  <script>
+    document.getElementById('signupForm').addEventListener('submit'), (e) => {
+      e.preventDefault();
+      const username = document.getElementById('username').value;
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
 
-function showLogin() {
-    document.getElementById("login-form").classList.add("active");
-    document.getElementById("signup-form").classList.remove("active");
-    document.getElementById("login-btn").classList.add("active");
-    document.getElementById("signup-btn").classList.remove("active");
-}
+    }
+    // Save to localStorage
+    localStorage.setItem('user', JSON.stringify({ username, email, password }));
+    document.getElementById('message').innerText = 'Sign-Up Successful!';
 
-function showSignUp() {
-    document.getElementById("signup-form").classList.add("active");
-    document.getElementById("login-form").classList.remove("active");
-    document.getElementById("signup-btn").classList.add("active");
-    document.getElementById("login-btn").classList.remove("active");
-}
-    </script>
+  </script>
+
 </body>
+
 </html>
