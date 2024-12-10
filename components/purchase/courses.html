@@ -5,14 +5,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Learning Website</title>
-
     <link rel="stylesheet" href="c-style.css">
 
-
     <script>
-        // Define an array of courses
+        // Define courses array
         const courses = [
-            {
+        {
                 title: "HTML Course for Beginners",
                 rating: "4.55",
                 learners: "5.8L+ Learners",
@@ -103,133 +101,63 @@
                 badge: "FREE",
                 image: "./course-9.jpg"
             },
-            {
-                title: "C for Beginners",
-                rating: "4.5",
-                learners: "1.1L+ Learners",
-                level: "Beginner",
-                duration: "1.5 Hrs",
-                price: "₹0",
-                badge: "FREE",
-                image: "./course-10.jpg"
-            }
+            
         ];
 
-
-        function generateCourses() {
-            const courseList = document.querySelector(".course-list"); // Select the container for the courses
+        // Generate courses dynamically
+        document.addEventListener("DOMContentLoaded", () => {
+            const courseList = document.querySelector(".course-list");
 
             courses.forEach(course => {
-                // Create a course card element
-                const courseCard = document.createElement("div");
-                courseCard.classList.add("course-card");
-
-                // Add badge
-                const badge = document.createElement("div");
-                badge.classList.add("badge", course.badge.toLowerCase());
-                badge.innerText = course.badge;
-                courseCard.appendChild(badge);
-
-                // Add image
-                const img = document.createElement("img");
-                img.src = course.image;
-                img.alt = `${course.title} Image`;
-                img.classList.add("course-image");
-                courseCard.appendChild(img);
-
-                // Add course info
-                const courseInfo = document.createElement("div");
-                courseInfo.classList.add("course-info");
-
-                const title = document.createElement("h3");
-                title.innerText = course.title;
-                courseInfo.appendChild(title);
-
-                const details = document.createElement("p");
-                details.innerHTML = `⭐ ${course.rating} &nbsp;&bull;&nbsp; ${course.learners} &nbsp;&bull;&nbsp; ${course.level}`;
-                courseInfo.appendChild(details);
-
-                const durationAndPrice = document.createElement("p");
-                durationAndPrice.innerHTML = `⏱ ${course.duration} &nbsp;&bull;&nbsp; ${course.price}`;
-                courseInfo.appendChild(durationAndPrice);
-
-                // Add enroll button
-                const button = document.createElement("button");
-                button.classList.add("enroll-btn");
-                button.innerText = "Enroll Now";
-
-                // Add click event listener to the button
-                button.addEventListener("click", () => {
-                    if (course.badge === "PAID") {
-                        // Redirect to the payment gateway page
-                        window.location.href = `payment-gateway.html?course=${encodeURIComponent(course.title)}&price=${encodeURIComponent(course.price)}`;
-                    } else {
-                        alert(`You have successfully enrolled in "${course.title}"!`);
-                    }
-                });
-
-                courseInfo.appendChild(button);
-
-                // Append course info to the card
-                courseCard.appendChild(courseInfo);
-
-                // Append course card to the course list
-                courseList.appendChild(courseCard);
+                courseList.innerHTML += `
+                    <div class="course-card">
+                        <div class="badge ${course.badge.toLowerCase()}">${course.badge}</div>
+                        <img src="${course.image}" alt="${course.title} Image" class="course-image">
+                        <div class="course-info">
+                            <h3>${course.title}</h3>
+                            <p>⭐ ${course.rating} &bull; ${course.learners} &bull; ${course.level}</p>
+                            <p>⏱ ${course.duration} &bull; ${course.price}</p>
+                            <button class="enroll-btn" onclick="handleEnroll('${course.title}', '${course.badge}', '${course.price}')">Enroll Now</button>
+                        </div>
+                    </div>`;
             });
+        });
+
+        // Handle enrollment logic
+        function handleEnroll(title, badge, price) {
+            if (badge === "PAID") {
+                window.location.href = `payment-gateway.html?course=${encodeURIComponent(title)}&price=${encodeURIComponent(price)}`;
+            } else {
+                alert(`You have successfully enrolled in "${title}"!`);
+            }
         }
-
-        // Call the function when the DOM is fully loaded
-        document.addEventListener("DOMContentLoaded", generateCourses);
-
-
-
     </script>
 </head>
 
 <body>
-
-
     <!-- Navigation Bar -->
     <header>
         <nav>
-
-            <img src="/images/logo2-removebg-preview.png"
-                style="margin-top: 40px; width:200px; height: 100px; object-fit: cover;">
-
+            <img src="/images/logo2-removebg-preview.png" style="margin-top: 40px; width:200px; height: 100px; object-fit: cover;">
             <ul class="nav-links">
                 <li><a href="/homepage.html">Home</a></li>
-                <li>
-                    <div class="dropdown">
-                        <button class="dropdown-button">courses</button>
-                        <div class="dropdown-content">
-                            <a href="/components/courses/web-tech.html">web-tech</a>
-                            <a href="/components/courses/os.html">OS</a>
-                            <a href="/components/courses/cn.html">CN</a>
-                            <a href="/components/courses/ai.html">A.I.</a>
-                            <a href="/components/courses/Maths.html">Probability & Statistics</a>
-                        </div>
-                    </div>
-                    <!-- <a href="courses.html">Cources</a> -->
-                </li>
-                <li><a href="/components/quize/quizhome.html">Quiz</a></li>
-                <li><a href="/components/profile/p.html">About-Us</a></li>
+                <li><a href="/components/courses/web-tech.html">Courses</a></li>
+                <li><a href="/components/quiz/quizhome.html">Quiz</a></li>
+                <li><a href="/components/profile/p.html">About Us</a></li>
                 <li><a href="./courses.html">Purchase</a></li>
-
             </ul>
         </nav>
     </header>
 
-
+    <!-- Main Section -->
     <main>
         <section id="courses" class="py-5">
-            <h2 class="text-center text-white mb-4" style="color: aliceblue; text-align: center; padding: 10px;">Our Courses</h2>
+            <h2 class="text-center" style="color: aliceblue; text-align: center; padding: 10px;">Our Courses</h2>
             <div class="course-list">
-                <!-- Dynamically generated courses will appear here  -->
+                <!-- Courses will be dynamically generated here -->
             </div>
         </section>
     </main>
-
-    
 </body>
 
 </html>
