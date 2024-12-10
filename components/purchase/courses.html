@@ -138,13 +138,29 @@
     <!-- Navigation Bar -->
     <header>
         <nav>
-            <img src="/images/logo2-removebg-preview.png" style="margin-top: 40px; width:200px; height: 100px; object-fit: cover;">
+
+            <img src="/images/logo2-removebg-preview.png"
+                style="margin-top: 40px; width:200px; height: 100px; object-fit: cover;">
+
             <ul class="nav-links">
-                <li><a href="/homepage.html">Home</a></li>
-                <li><a href="/components/courses/web-tech.html">Courses</a></li>
-                <li><a href="/components/quiz/quizhome.html">Quiz</a></li>
-                <li><a href="/components/profile/p.html">About Us</a></li>
-                <li><a href="./courses.html">Purchase</a></li>
+                <li><a href="#homepage">Home</a></li>
+                <li>
+                    <div class="dropdown">
+                        <button class="dropdown-button">courses</button>
+                        <div class="dropdown-content">
+                            <a href="/components/courses/web-tech.html">web-tech</a>
+                            <a href="/components/courses/os.html">OS</a>
+                            <a href="/components/courses/cn.html">CN</a>
+                            <a href="/components/courses/ai.html">A.I.</a>
+                            <a href="/components/courses/Maths.html">Probability & Statistics</a>
+                        </div>
+                    </div>
+                    <!-- <a href="courses.html">Cources</a> -->
+                </li>
+                <li><a href="/components/quize/quizhome.html">Quiz</a></li>
+                <li><a href="/components/profile/p.html">About-Us</a></li>
+                <li><a href="/components/purchase/courses.html">Purchase</a></li>
+
             </ul>
         </nav>
     </header>
